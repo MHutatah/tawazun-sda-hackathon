@@ -37,11 +37,11 @@ spec:
           mountPath: /var/lib/mysql  
         resources:
           requests:
-            memory: "2Gi"
-            cpu: "2"
+            memory: "500Mi"
+            cpu: "500m"
           limits:
-            memory: "4Gi"
-            cpu: "4"
+            memory: "1Gi"
+            cpu: "1"
         livenessProbe:
           exec:
             command:
