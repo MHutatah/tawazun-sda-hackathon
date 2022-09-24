@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: tawazun-svc
+  namespace: mohammedalghamdi-tawazun
+  labels:
+    app: tawazun
+    name: MohammedAlghamdi
+spec:
+  selector:
+    app:  tawazun
+  ports:
+  - port: 80
+    targetPort: 8080
+  type: LoadBalancer
