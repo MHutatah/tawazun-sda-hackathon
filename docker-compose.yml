@@ -1,0 +1,39 @@
+version: '3.7'
+
+services:
+  tawazun-database:
+    image: mysql:latest
+    environment:
+      - MYSQL_DATABASE=tawazun-db
+      - MYSQL_ROOT_USER=root
+      - MYSQL_ROOT_PASSWORD=mohammed1234
+    volumes:
+      - /data/mysql
+    ports:
+    - 3306:3306
+    container_name: tawazun-db
+    networks:
+    - network-backend
+  tawazun-app:
+    image: tawazun
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    environment:
+      - DB_URL=tawazun-database
+      - DB_PORT=3306
+      - DB_NAME=tawazun-db
+      - DB_USERNAME=root
+      - DB_PASSWORD=mohammed1234
+    depends_on:
+      - tawazun-databaseb
+    ports:
+      - 80:8080
+    volumes:
+      - /data/spring-boot-app
+    container_name: tawazun-app
+    networks:
+    - network-backend
+
+networks:
+  network-backend:
